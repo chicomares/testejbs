@@ -324,7 +324,7 @@ if (window.location.hash === "") {
         if (!err) {
             console.log(res);
             var data = d3.nest().party(function(d) { return d.candidate; }).party(function(d) { return d.type; }).entries(res);
-            main({title: "World Population"}, {party: "World", values: data});
+            main({title: "World Population"}, {party: "JBS", values: data});
         }
     });
 }
