@@ -323,7 +323,7 @@ if (window.location.hash === "") {
     d3.json("data.json", function(err, res) {
         if (!err) {
             console.log(res);
-            var data = d3.nest().key(function(d) { return d.region; }).key(function(d) { return d.subregion; }).key(function(d) { return d.type; }).entries(res);
+            var data = d3.nest().key(function(d) { return d.party; }).key(function(d) { return d.type; }).key(function(d) { return d.situation; }).key(function(d) { return d.candidate; }).entries(res);
             main({title: "World Population"}, {key: "World", values: data});
         }
     });
