@@ -69,7 +69,6 @@ rect.parent {
 </head>
 
 <body>
-agora vai
 <div id="chart"></div>
 
 <script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
@@ -324,8 +323,8 @@ if (window.location.hash === "") {
     d3.json("data.json", function(err, res) {
         if (!err) {
             console.log(res);
-            var data = d3.nest().key(function(d) { return d.region; }).key(function(d) { return d.subregion; }).entries(res);
-            main({title: "World Population"}, {key: "JBS Donations", values: data});
+            var data = d3.nest().key(function(d) { return d.region; }).key(function(d) { return d.subregion; }).key(function(d) { return d.type; }).entries(res);
+            main({title: "World Population"}, {key: "World", values: data});
         }
     });
 }
