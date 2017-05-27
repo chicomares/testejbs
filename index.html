@@ -69,7 +69,6 @@ rect.parent {
 </head>
 
 <body>
-tá lindo bicho
 <div id="chart"></div>
 
 <script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
@@ -148,7 +147,7 @@ function main(o, data) {
     $("#chart").prepend("<p class='title'>" + opts.title + "</p>");
   }
   if (data instanceof Array) {
-    root = { key: rname, values: data };
+    root = { party: rname, values: data };
   } else {
     root = data;
   }
@@ -229,10 +228,10 @@ function main(o, data) {
         .attr("class", "child")
         .call(rect)
       .append("title")
-        .text(function(d) { return d.key + " (" + formatNumber(d.value) + ")"; });
+        .text(function(d) { return d.party + " (" + formatNumber(d.value) + ")"; });
     children.append("text")
         .attr("class", "ctext")
-        .text(function(d) { return d.key; })
+        .text(function(d) { return d.party; })
         .call(text2);
 
     g.append("rect")
@@ -244,14 +243,14 @@ function main(o, data) {
         .attr("dy", ".75em")
 
     t.append("tspan")
-        .text(function(d) { return d.key; });
+        .text(function(d) { return d.party; });
     t.append("tspan")
         .attr("dy", "1.0em")
         .text(function(d) { return formatNumber(d.value); });
     t.call(text);
 
     g.selectAll("rect")
-        .style("fill", function(d) { return color(d.key); });
+        .style("fill", function(d) { return color(d.party); });
 
     function transition(d) {
       if (transitioning || !d) return;
@@ -315,8 +314,8 @@ function main(o, data) {
 
   function name(d) {
     return d.parent
-        ? name(d.parent) + " / " + d.key + " (" + formatNumber(d.value) + ")"
-        : d.key + " (" + formatNumber(d.value) + ")";
+        ? name(d.parent) + " / " + d.party + " (" + formatNumber(d.value) + ")"
+        : d.party + " (" + formatNumber(d.value) + ")";
   }
 }
 
@@ -324,8 +323,8 @@ if (window.location.hash === "") {
     d3.json("data2.json", function(err, res) {
         if (!err) {
             console.log(res);
-            var data = d3.nest().key(function(d) { return d.region; }).key(function(d) { return d.subregion; }).entries(res);
-            main({title: "World Population"}, {key: "World", values: data});
+            var data = d3.nest().party(function(d) { return d.candidate; }).party(function(d) { return d.type; }).entries(res);
+            main({title: "World Population"}, {party: "World", values: data});
         }
     });
 }
